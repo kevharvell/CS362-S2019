@@ -748,7 +748,7 @@ int playSmithy(struct gameState *state, int handPos) {
 	return 0;
 }
 
-int playVillage(struct gameState *state) {
+int playVillage(struct gameState *state, int handPos) {
 	int currentPlayer = whoseTurn(state);
 
 	//+1 Card
@@ -890,9 +890,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		playSmithy(state, handPos);
 		break;
 		
-
 	case village:
-		playVillage(state);
+		playVillage(state, handPos);
 		break;
 		
 	case baron:
