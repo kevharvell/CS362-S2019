@@ -670,7 +670,7 @@ int playAdventurer(struct gameState *state) {
 	}
 	while (z - 1 >= 0) {
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
-		z = z - 1;
+		z = z + 1;
 	}
 	return 0;
 }
@@ -708,7 +708,7 @@ int playRemodel(struct gameState *state, int choice1, int choice2, int handPos) 
 	int j;
 	int currentPlayer = whoseTurn(state);
 
-	j = state->hand[currentPlayer][choice1];  //store card we will trash
+	j = state->hand[currentPlayer][choice2];  //store card we will trash
 
 	if ((getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2))
 	{
@@ -738,7 +738,7 @@ int playSmithy(struct gameState *state, int handPos) {
 	int currentPlayer = whoseTurn(state);
 
 	//+3 Cards
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 5; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
