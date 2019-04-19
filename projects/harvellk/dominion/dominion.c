@@ -675,7 +675,7 @@ int playAdventurer(struct gameState *state) {
 	return 0;
 }
 
-int playCouncilRoom(struct gameState *state) {
+int playCouncilRoom(struct gameState *state, int handPos) {
 	int i;
 	int currentPlayer = whoseTurn(state);
 
@@ -728,7 +728,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		playAdventurer(state);
 
 	case council_room:
-		playCouncilRoom(state);
+		playCouncilRoom(state, handPos);
 
 	case feast:
 		//gain card with cost up to 5
