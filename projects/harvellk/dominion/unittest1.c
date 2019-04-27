@@ -12,7 +12,7 @@
 void testNumHandCards() {
 	struct gameState *state;
 	state->whoseTurn = 0;
-	state->handCount[state.whoseTurn] = 5;
+	state->handCount[state->whoseTurn] = 5;
 
 
 	assert(numHandCards(state) == 5);
