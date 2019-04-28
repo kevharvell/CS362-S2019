@@ -106,7 +106,7 @@ void testNumHandCards() {
 		state->whoseTurn = i;
 		state->handCount[state->whoseTurn] = numCards;
 		state->handCount[state->whoseTurn] -= INT_MAX;
-		numCards -= INT_MAX
+		numCards -= INT_MAX;
 		printf("Player: %d \tExpected Number of Cards in hand: %d \tActual Number of Cards in hand: %d\n",
 			state->whoseTurn,
 			numCards,
