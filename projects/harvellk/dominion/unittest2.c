@@ -16,6 +16,7 @@ void assertTrue(int expression, char message[]) {
 
 void testWhoseTurn() {
 	struct gameState *state = malloc(sizeof(struct gameState));
+	int i;
 
 	// TEST 1: players have correct number of cards
 	printf("\n >>> TESTING - whoseTurn(gameState*) <<<\n");
