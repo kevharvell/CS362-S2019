@@ -32,15 +32,19 @@ void testNumHandCards() {
 	// TEST 2: players have correct number of cards after gaining cards
 	printf(" >>> TESTING - numHandCards(gameState*) <<<\n");
 	printf(" Number of Cards in all players' hands is correct after gaining 2 cards.\n");
+	numCards = 1;
 	for (i = 0; i < MAX_PLAYERS; i++) {
 		state->whoseTurn = i;
+		state->handCount[state->whoseTurn] = numCards;
 		state->handCount[state->whoseTurn] += 2;
+		numCards += 2;
 		printf("Player: %d \tExpected Number of Cards in hand: %d \tActual Number of Cards in hand: %d\n",
 			state->whoseTurn,
-			state->handCount[state->whoseTurn] + 2,
+			numCards,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assert(expectedNumCards == state->handCount[state->whoseTurn] + 2);
+		assert(expectedNumCards == numCards);
+		numCards++;
 	}
 	
 	free(state);
