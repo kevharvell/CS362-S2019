@@ -6,7 +6,7 @@
 #include <assert.h>
 #include <limits.h>
 
-void assertTrue(bool expression, char[] message) {
+void assertTrue(int expression, char[] message) {
 	if (!expression) {
 		printf(message);
 	}
