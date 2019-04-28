@@ -1,3 +1,5 @@
+/* These unit tests test the numHandCards(gameState*) function from dominion.c */
+
 #include<stdio.h>
 #include<stdlib.h>
 #include "dominion.h"
