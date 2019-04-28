@@ -16,8 +16,8 @@ void testNumHandCards() {
 	state->handCount[state->whoseTurn] = 5;
 	printf("\nNumber of cards: %d", state->handCount[state->whoseTurn]);
 
-
-	assert(numHandCards(state) == 5);
+	int expectedNumCards = numHandCards(state);
+	assert(expectedNumCards == 5);
 	free(state);
 }
 
