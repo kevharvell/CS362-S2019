@@ -81,6 +81,23 @@ void testNumHandCards() {
 		int expectedNumCards = numHandCards(state);
 		assert(expectedNumCards == INT_MAX);
 	}
+
+	// TEST 5: players can lose a lot of cards
+	printf("\n >>> TESTING - numHandCards(gameState*) <<<\n");
+	printf(" Number of Cards in all players' hands is correct after losing a lot of cards.\n");
+	numCards = 0;
+	for (i = 0; i < MAX_PLAYERS; i++) {
+		state->whoseTurn = i;
+		state->handCount[state->whoseTurn] = INT_MAX;
+		state->handCount[state->whoseTurn] -= INT_MAX;
+		printf("Player: %d \tExpected Number of Cards in hand: %d \tActual Number of Cards in hand: %d\n",
+			state->whoseTurn,
+			0,
+			numHandCards(state));
+		int expectedNumCards = numHandCards(state);
+		assert(expectedNumCards == 0);
+	}
+
 	free(state);
 }
 
