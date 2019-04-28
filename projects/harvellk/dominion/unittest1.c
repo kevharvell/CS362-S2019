@@ -114,7 +114,7 @@ void testNumHandCards() {
 			numCards,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assert(expectedNumCards >= 0);
+		assertTrue(expectedNumCards >= 0, "TEST FAILED: Hand count should not be negative.");
 		numCards += INT_MAX;
 		numCards++;
 	}
