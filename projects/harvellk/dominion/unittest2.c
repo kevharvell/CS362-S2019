@@ -50,7 +50,7 @@ void testWhoseTurn() {
 		printf("Player turn: %d\n",
 			whoseTurn(state)
 		);
-		assertTrue(whoseTurn(state) >= 0, "TEST FAILED: Player Turn cannot exceed (MAX_PLAYERS - 1).\n");
+		assertTrue(whoseTurn(state) <= MAX_PLAYERS - 1, "TEST FAILED: Player Turn cannot exceed (MAX_PLAYERS - 1).\n");
 	}
 
 	free(state);
