@@ -19,10 +19,10 @@ void testNumHandCards() {
 	for (i = 0; i < MAX_PLAYERS; i++) {
 		state->whoseTurn = i;
 		state->handCount[state->whoseTurn] = numCards;
-		printf("Player: %d \tExpected Number of Cards in hand: %d \tActual Number of Cards in hand: %d\n", 
-			state->whoseTurn, 
-			numCards, 
-			numHandCards(state))
+		printf("Player: %d \tExpected Number of Cards in hand: %d \tActual Number of Cards in hand: %d\n",
+			state->whoseTurn,
+			numCards,
+			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
 		assert(expectedNumCards == numCards);
 		numCards++;
