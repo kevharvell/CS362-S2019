@@ -14,10 +14,10 @@ void testNumHandCards() {
 	state->whoseTurn = 0;
 	printf("Whose Turn: %d", state->whoseTurn);
 	state->handCount[state->whoseTurn] = 5;
-	printf("Number of cards: %d", state->handCount[state->whoseTurn]);
+	printf("\nNumber of cards: %d", state->handCount[state->whoseTurn]);
 
 
-	//assert(numHandCards(state) == 5);
+	assert(numHandCards(state) == 5);
 	free(state);
 }
 
