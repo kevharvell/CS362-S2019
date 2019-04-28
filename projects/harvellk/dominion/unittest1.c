@@ -37,10 +37,10 @@ void testNumHandCards() {
 		state->handCount[state->whoseTurn] += 2;
 		printf("Player: %d \tExpected Number of Cards in hand: %d \tActual Number of Cards in hand: %d\n",
 			state->whoseTurn,
-			state->handCount[state->handCount] + 2,
+			state->handCount[state->whoseTurn] + 2,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assert(expectedNumCards == state->handCount[state->handCount] + 2);
+		assert(expectedNumCards == state->handCount[state->whoseTurn] + 2);
 	}
 	
 	free(state);
