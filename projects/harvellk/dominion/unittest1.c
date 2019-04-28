@@ -13,7 +13,8 @@ void testNumHandCards() {
 	struct gameState *state = malloc(sizeof(struct gameState));
 
 	// TEST 1: players have correct number of cards
-	printf(" >>> TESTING - numHandCards(gameState*) - Number of Cards in all players' hands is correct <<<\n");
+	printf(" >>> TESTING - numHandCards(gameState*) <<<\n");
+	printf(" Number of Cards in all players' hands is correct\n");
 	int i;
 	int numCards = 1; 
 	for (i = 0; i < MAX_PLAYERS; i++) {
@@ -29,7 +30,8 @@ void testNumHandCards() {
 	}
 
 	// TEST 2: players have correct number of cards after gaining cards
-	printf(" >>> TESTING - numHandCards(gameState*) - Number of Cards in all players' hands is correct <<<\n");
+	printf(" >>> TESTING - numHandCards(gameState*) <<<\n");
+	printf(" Number of Cards in all players' hands is correct after gaining 2 cards.\n");
 	for (i = 0; i < MAX_PLAYERS; i++) {
 		state->whoseTurn = i;
 		state->handCount[state->whoseTurn] += 2;
