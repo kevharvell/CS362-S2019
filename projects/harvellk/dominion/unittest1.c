@@ -119,6 +119,21 @@ void testNumHandCards() {
 		numCards++;
 	}
 
+	// TEST 7: number of cards in hand can be 0
+	printf("\n >>> TESTING - numHandCards(gameState*) <<<\n");
+	printf(" Number of Cards in all players' hands can be 0.\n");
+	numCards = 0;
+	for (i = 0; i < MAX_PLAYERS; i++) {
+		state->whoseTurn = i;
+		state->handCount[state->whoseTurn] = numCards;
+		printf("Player: %d \tExpected Number of Cards in hand: %d \tActual Number of Cards in hand: %d\n",
+			state->whoseTurn,
+			numCards,
+			numHandCards(state));
+		int expectedNumCards = numHandCards(state);
+		assertTrue(expectedNumCards == numCards, "TEST FAILED: Hand count not allowed to be 0.\n");
+	}
+
 	free(state);
 }
 
