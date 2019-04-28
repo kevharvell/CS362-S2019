@@ -11,13 +11,23 @@
 
 void testNumHandCards() {
 	struct gameState *state = malloc(sizeof(struct gameState));
-	state->whoseTurn = 0;
-	printf("Whose Turn: %d", state->whoseTurn);
-	state->handCount[state->whoseTurn] = 5;
-	printf("\nNumber of cards: %d", state->handCount[state->whoseTurn]);
 
-	int expectedNumCards = numHandCards(state);
-	assert(expectedNumCards == 5);
+	// TEST 1: players have correct number of cards
+	printf("*** TESTING - numHandCards(gameState*) - Number of Cards in all players' hands is correct ***");
+	int i;
+	int numCards = 1; 
+	for (i = 0; i < MAX_PLAYERS; i++) {
+		state->whoseTurn = i;
+		state->handCount[state->whoseTurn] = numCards;
+		printf("Player: %d \tExpected Number of Cards in hand: %d \tActual Number of Cards in hand: %d\n", 
+			state->whoseTurn, 
+			numCards, 
+			numHandCards(state))
+		int expectedNumCards = numHandCards(state);
+		assert(expectedNumCards == numCards);
+		numCards++;
+	}
+	
 	free(state);
 }
 
