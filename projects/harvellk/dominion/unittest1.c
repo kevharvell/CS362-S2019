@@ -98,6 +98,25 @@ void testNumHandCards() {
 		assert(expectedNumCards == 0);
 	}
 
+	// TEST 6: number of cards in hand should not be negative
+	printf("\n >>> TESTING - numHandCards(gameState*) <<<\n");
+	printf(" Number of Cards in all players' hands should not be negative.\n");
+	numCards = 10;
+	for (i = 0; i < MAX_PLAYERS; i++) {
+		state->whoseTurn = i;
+		state->handCount[state->whoseTurn] = numCards;
+		state->handCount[state->whoseTurn] -= INT_MAX;
+		numCards -= INT_MAX
+		printf("Player: %d \tExpected Number of Cards in hand: %d \tActual Number of Cards in hand: %d\n",
+			state->whoseTurn,
+			numCards,
+			numHandCards(state));
+		int expectedNumCards = numHandCards(state);
+		assert(expectedNumCards >= 0);
+		numCards += INT_MAX;
+		numCards++;
+	}
+
 	free(state);
 }
 
