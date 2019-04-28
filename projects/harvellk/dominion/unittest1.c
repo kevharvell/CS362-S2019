@@ -10,7 +10,7 @@
 //}
 
 void testNumHandCards() {
-	struct gameState *state = malloc(sizeof(struct gameState));
+	struct gameState *state = (gameState*)malloc(sizeof(struct gameState));
 	state->whoseTurn = 0;
 	state->handCount[state->whoseTurn] = 5;
 
