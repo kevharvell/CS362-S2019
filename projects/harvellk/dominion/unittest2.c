@@ -18,7 +18,7 @@ void testWhoseTurn() {
 	struct gameState *state = malloc(sizeof(struct gameState));
 	int i;
 
-	// TEST 1: players have correct number of cards
+	// TEST 1: players' turns are correct
 	printf("\n >>> TESTING - whoseTurn(gameState*) <<<\n");
 	printf(" whoseTurn is correct for all players. \n");
 	for (i = 0; i < MAX_PLAYERS; i++) {
@@ -29,6 +29,17 @@ void testWhoseTurn() {
 			);
 		int expectedPlayerTurn = i;
 		assertTrue(expectedPlayerTurn == whoseTurn(state), "TEST FAILED: Player Turn is incorrect.\n");
+	}
+
+	// TEST 2: Player's turn cannot be negative
+	printf("\n >>> TESTING - whoseTurn(gameState*) <<<\n");
+	printf(" whoseTurn is cannot be negative for players. \n");
+	for (i = 0; i < MAX_PLAYERS; i++) {
+		state->whoseTurn = i * -1;
+		printf("Player turn: %d\n",
+			whoseTurn(state)
+		);
+		assertTrue(whoseTurn(state) >= 0, "TEST FAILED: Player Turn is cannot be negative.\n");
 	}
 
 	free(state);
