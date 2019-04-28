@@ -10,12 +10,13 @@
 //}
 
 void testNumHandCards() {
-	struct gameState *state;
+	struct gameState *state = malloc(sizeof(struct gameState));
 	state->whoseTurn = 0;
 	state->handCount[state->whoseTurn] = 5;
 
 
 	assert(numHandCards(state) == 5);
+	free(state);
 }
 
 int main() {
