@@ -12,7 +12,7 @@
 void testNumHandCards() {
 	struct gameState *state = (gameState*)malloc(sizeof(struct gameState));
 	state->whoseTurn = 0;
-	fprint("Whose Turn: %d", state->whoseTurn);
+	printf("Whose Turn: %d", state->whoseTurn);
 	state->handCount[state->whoseTurn] = 5;
 
 
