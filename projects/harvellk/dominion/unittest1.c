@@ -28,7 +28,7 @@ void testNumHandCards() {
 			numCards,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assertTrue(expectedNumCards == numCards, "TEST FAILED: hand count incorrect.");
+		assertTrue(expectedNumCards == numCards, "TEST FAILED: hand count incorrect.\n");
 		numCards++;
 	}
 
@@ -46,7 +46,7 @@ void testNumHandCards() {
 			numCards,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assert(expectedNumCards == numCards);
+		assertTrue(expectedNumCards == numCards, "TEST FAILED: hand count incorrect after gaining 2 cards.");
 		numCards++;
 	}
 	
@@ -64,7 +64,7 @@ void testNumHandCards() {
 			numCards,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assert(expectedNumCards == numCards);
+		assertTrue(expectedNumCards == numCards, "TEST FAILED : hand count incorrect after losing 2 cards.");
 		numCards+=3;
 	}
 
@@ -81,7 +81,7 @@ void testNumHandCards() {
 			INT_MAX,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assert(expectedNumCards == INT_MAX);
+		assertTrue(expectedNumCards == INT_MAX, "TEST FAILED: hand count incorrect after gaining a lot cards.");
 	}
 
 	// TEST 5: players can lose a lot of cards
@@ -97,7 +97,7 @@ void testNumHandCards() {
 			0,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assert(expectedNumCards == 0);
+		assertTrue(expectedNumCards == 0, "TEST FAILED: hand count incorrect after losing a lot of cards.");
 	}
 
 	// TEST 6: number of cards in hand should not be negative
@@ -114,7 +114,7 @@ void testNumHandCards() {
 			numCards,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assertTrue(expectedNumCards >= 0, "TEST FAILED: Hand count should not be negative.");
+		assertTrue(expectedNumCards >= 0, "TEST FAILED: Hand count should not be negative.\n");
 		numCards += INT_MAX;
 		numCards++;
 	}
