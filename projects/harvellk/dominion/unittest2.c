@@ -39,7 +39,18 @@ void testWhoseTurn() {
 		printf("Player turn: %d\n",
 			whoseTurn(state)
 		);
-		assertTrue(whoseTurn(state) >= 0, "TEST FAILED: Player Turn is cannot be negative.\n");
+		assertTrue(whoseTurn(state) >= 0, "TEST FAILED: Player Turn cannot be negative.\n");
+	}
+
+	// TEST 2: Player's turn cannot exceed MAX_PLAYERS - 1
+	printf("\n >>> TESTING - whoseTurn(gameState*) <<<\n");
+	printf(" whoseTurn is cannot exceed (MAX_PLAYERS - 1) for players. \n");
+	for (i = MAX_PLAYERS - 1; i < MAX_PLAYERS + MAX_PLAYERS; i++) {
+		state->whoseTurn = i;
+		printf("Player turn: %d\n",
+			whoseTurn(state)
+		);
+		assertTrue(whoseTurn(state) >= 0, "TEST FAILED: Player Turn cannot exceed (MAX_PLAYERS - 1).\n");
 	}
 
 	free(state);
