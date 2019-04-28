@@ -6,9 +6,11 @@
 #include <assert.h>
 #include <limits.h>
 
-//int numHandCards(struct gameState *state) {
-//	return state->handCount[whoseTurn(state)];
-//}
+void assertTrue(bool expression, char[] message) {
+	if (!expression) {
+		printf(message);
+	}
+}
 
 void testNumHandCards() {
 	struct gameState *state = malloc(sizeof(struct gameState));
@@ -26,7 +28,7 @@ void testNumHandCards() {
 			numCards,
 			numHandCards(state));
 		int expectedNumCards = numHandCards(state);
-		assert(expectedNumCards == numCards);
+		assertTrue(expectedNumCards == numCards, "TEST FAILED: hand count incorrect.");
 		numCards++;
 	}
 
