@@ -96,7 +96,7 @@ void testPlayVillage() {
 	expectedHandCount = 5;
 
 	playVillage(state, handPos);
-	int actualHandCount = state->handCount[currentPlayer];
+	actualHandCount = state->handCount[currentPlayer];
 
 	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
 		expectedHandCount,
