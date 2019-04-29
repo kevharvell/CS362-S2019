@@ -85,6 +85,25 @@ void testPlayVillage() {
 			);
 	assertTrue(expectedDeckCount == actualDeckCount, "TEST FAILED: deck count incorrect after drawing.\n");
 
+	// TEST 4: player's hand increases by 1, then goes down 1 after discarding when deck count is 0
+	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
+	printf(" playVillage increases hand count by 1 and discards the card when deck count is 0\n");
+	handPos = 0;
+	state->whoseTurn = 0;
+	currentPlayer = state->whoseTurn;
+	state->deckCount[currentPlayer] = 0;
+	state->handCount[currentPlayer] = 5;
+	expectedHandCount = 5;
+
+	playVillage(state, handPos);
+	int actualHandCount = state->handCount[currentPlayer];
+
+	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
+		expectedHandCount,
+		actualHandCount
+	);
+	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding when deck count is 0.\n");
+
 	free(state);
 }
 
