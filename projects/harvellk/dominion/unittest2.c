@@ -32,10 +32,11 @@ void testPlaySmithy() {
 	
 	// TEST 1: player's hand increases by 3, then goes down 1 after discarding
 	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
-	printf(" playVillage increases hand count by 1 and discards the card\n");
+	printf(" playVillage increases hand count by 3 and discards the card\n");
 	int handPos = 0;
 	state->whoseTurn = 0;
 	int currentPlayer = state->whoseTurn;
+	state->deckCount[currentPlayer] = 10;
 	state->handCount[currentPlayer] = 5;
 	int expectedHandCount = 7;
 
