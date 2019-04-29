@@ -33,7 +33,7 @@ void testPlayVillage() {
 	
 	// TEST 1: players have correct number of cards
 	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
-	printf(" playVillage increases hand count by 1\n");
+	printf(" playVillage increases hand count by 1 and discards the card\n");
 	int handPos = 0;
 	state->whoseTurn = 0;
 	int currentPlayer = state->whoseTurn;
