@@ -76,7 +76,7 @@ void testPlaySmithy() {
 	currentPlayer = state->whoseTurn;
 	state->deckCount[currentPlayer] = 3;
 	state->handCount[currentPlayer] = 5;
-	int expectedDeckCount = 7;
+	int expectedDeckCount = 0;
 
 	playSmithy(state, handPos);
 	int actualDeckCount = state->deckCount[currentPlayer];
