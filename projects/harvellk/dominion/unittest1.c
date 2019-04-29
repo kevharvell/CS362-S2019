@@ -6,6 +6,20 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 
+/*int playVillage(struct gameState *state, int handPos) {
+	int currentPlayer = whoseTurn(state);
+
+	//+1 Card
+	drawCard(currentPlayer, state);
+
+	//+2 Actions
+	state->numActions = state->numActions + 3;
+
+	//discard played card from hand
+	discardCard(handPos, currentPlayer, state, 0);
+	return 0;
+}*/
+
 void assertTrue(int expression, char message[]) {
 	if (!expression) {
 		printf(message);
@@ -50,7 +64,7 @@ void testPlayVillage() {
 			expectedActionCount,
 			actualActionCount
 			);
-	assertTrue(expectedActionCount == actualActionCount, "TEST FAILED: hand count incorrect.\n");
+	assertTrue(expectedActionCount == actualActionCount, "TEST FAILED: action count incorrect.\n");
 
 	// TEST 3: player's deck count goes down by 1 after playing Village
 	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
