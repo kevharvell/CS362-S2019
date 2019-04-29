@@ -31,7 +31,7 @@ void assertTrue(int expression, char message[]) {
 void testPlayVillage() {
 	struct gameState *state = malloc(sizeof(struct gameState));
 	
-	// TEST 1: players have correct number of cards
+	// TEST 1: player's hand increases by 1, then goes down 1 after discarding
 	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
 	printf(" playVillage increases hand count by 1 and discards the card\n");
 	int handPos = 0;
@@ -48,6 +48,25 @@ void testPlayVillage() {
 			actualHandCount
 			);
 	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect.\n");
+
+	// TEST 2: player gains 2 actions
+	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
+	printf(" playVillage increases actions by 2\n");
+	int handPos = 0;
+	state->whoseTurn = 0;
+	int currentPlayer = state->whoseTurn;
+	state->numActions = 1;
+
+	int expectedActionCount = 3;
+
+	playVillage(state, handPos);
+	int actualActionCount = state->numActions;
+
+	printf("Expected number of actions: %d \tActual number actions: %d\n",
+			expectedActionCount,
+			actualActionCount
+			);
+	assertTrue(expectedActionCount == actualActionCount, "TEST FAILED: hand count incorrect.\n");
 
 	free(state);
 }
