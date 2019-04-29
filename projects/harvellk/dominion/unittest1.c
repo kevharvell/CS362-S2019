@@ -70,9 +70,9 @@ void testPlayVillage() {
 	// TEST 3: player's deck count goes down by 1 after playing Village
 	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
 	printf(" playVillage decreases deck count by 1\n");
-	int handPos = 0;
+	handPos = 0;
 	state->whoseTurn = 0;
-	int currentPlayer = state->whoseTurn;
+	currentPlayer = state->whoseTurn;
 	state->deckCount[currentPlayer] = 10;
 	int expectedDeckCount = 9;
 
