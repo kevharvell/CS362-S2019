@@ -21,6 +21,7 @@ void testPlayVillage() {
 	int handPos = 0;
 	state->whoseTurn = 0;
 	int currentPlayer = state->whoseTurn;
+	state->deckCount[currentPlayer] = 10;
 	state->handCount[currentPlayer] = 5;
 	int expectedHandCount = 5;
 
@@ -57,6 +58,7 @@ void testPlayVillage() {
 	handPos = 0;
 	state->whoseTurn = 0;
 	currentPlayer = state->whoseTurn;
+	state->handCount = 5;
 	state->deckCount[currentPlayer] = 10;
 	int expectedDeckCount = 9;
 
