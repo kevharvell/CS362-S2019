@@ -52,9 +52,8 @@ void testPlayVillage() {
 	// TEST 2: player gains 2 actions
 	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
 	printf(" playVillage increases actions by 2\n");
-	int handPos = 0;
+	handPos = 0;
 	state->whoseTurn = 0;
-	int currentPlayer = state->whoseTurn;
 	state->numActions = 1;
 
 	int expectedActionCount = 3;
