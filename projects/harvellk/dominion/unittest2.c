@@ -79,7 +79,7 @@ void testPlaySmithy() {
 	int expectedDeckCount = 7;
 
 	playSmithy(state, handPos);
-	actualDeckCount = state->deckCount[currentPlayer];
+	int actualDeckCount = state->deckCount[currentPlayer];
 
 	printf("Expected number of cards in deck: %d \tActual number of cards in deck: %d\n",
 		expectedDeckCount,
