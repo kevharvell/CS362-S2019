@@ -1,26 +1,10 @@
-/* These unit tests test the numHandCards(gameState*) function from dominion.c */
+/* These unit tests test the playVillage(gameState*, int) function from dominion.c */
 
 #include<stdio.h>
 #include<stdlib.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
-#include <assert.h>
-#include <limits.h>
-
-/*int playVillage(struct gameState *state, int handPos) {
-	int currentPlayer = whoseTurn(state);
-
-	//+1 Card
-	drawCard(currentPlayer, state);
-
-	//+2 Actions
-	state->numActions = state->numActions + 3;
-
-	//discard played card from hand
-	discardCard(handPos, currentPlayer, state, 0);
-	return 0;
-}*/
 
 void assertTrue(int expression, char message[]) {
 	if (!expression) {

@@ -1,12 +1,25 @@
-/* These unit tests test the whoseTurn(gameState*) function from dominion.c */
+/* These unit tests test the playSmithy(gameState*, int) function from dominion.c */
 
 #include<stdio.h>
 #include<stdlib.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
-#include <assert.h>
-#include <limits.h>
+
+/*int playSmithy(struct gameState *state, int handPos) {
+	int i;
+	int currentPlayer = whoseTurn(state);
+
+	//+3 Cards
+	for (i = 0; i < 5; i++)
+	{
+		drawCard(currentPlayer, state);
+	}
+
+	//discard card from hand
+	discardCard(handPos, currentPlayer, state, 0);
+	return 0;
+}*/
 
 void assertTrue(int expression, char message[]) {
 	if (!expression) {
@@ -14,50 +27,32 @@ void assertTrue(int expression, char message[]) {
 	}
 }
 
-void testWhoseTurn() {
+void testPlaySmithy() {
 	struct gameState *state = malloc(sizeof(struct gameState));
-	int i;
+	
+	// TEST 1: player's hand increases by 3, then goes down 1 after discarding
+	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
+	printf(" playVillage increases hand count by 1 and discards the card\n");
+	int handPos = 0;
+	state->whoseTurn = 0;
+	int currentPlayer = state->whoseTurn;
+	state->handCount[currentPlayer] = 5;
+	int expectedHandCount = 7;
 
-	// TEST 1: players' turns are correct
-	printf("\n >>> TESTING - whoseTurn(gameState*) <<<\n");
-	printf(" whoseTurn is correct for all players. \n");
-	for (i = 0; i < MAX_PLAYERS; i++) {
-		state->whoseTurn = i;
-		printf("Expected Player: %d \tActual Player: %d\n",
-			state->whoseTurn,
-			whoseTurn(state)
+	playSmithy(state, handPos);
+	int actualHandCount = state->handCount[currentPlayer];
+
+	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
+			expectedHandCount,
+			actualHandCount
 			);
-		int expectedPlayerTurn = i;
-		assertTrue(expectedPlayerTurn == whoseTurn(state), "TEST FAILED: Player Turn is incorrect.\n");
-	}
-
-	// TEST 2: Player's turn cannot be negative
-	printf("\n >>> TESTING - whoseTurn(gameState*) <<<\n");
-	printf(" whoseTurn is cannot be negative for players. \n");
-	for (i = 0; i < MAX_PLAYERS; i++) {
-		state->whoseTurn = i * -1;
-		printf("Player turn: %d\n",
-			whoseTurn(state)
-		);
-		assertTrue(whoseTurn(state) >= 0, "TEST FAILED: Player Turn cannot be negative.\n");
-	}
-
-	// TEST 2: Player's turn cannot exceed MAX_PLAYERS - 1
-	printf("\n >>> TESTING - whoseTurn(gameState*) <<<\n");
-	printf(" whoseTurn is cannot exceed (MAX_PLAYERS - 1) for players. \n");
-	for (i = MAX_PLAYERS - 1; i < MAX_PLAYERS + MAX_PLAYERS; i++) {
-		state->whoseTurn = i;
-		printf("Player turn: %d\n",
-			whoseTurn(state)
-		);
-		assertTrue(whoseTurn(state) <= MAX_PLAYERS - 1, "TEST FAILED: Player Turn cannot exceed (MAX_PLAYERS - 1).\n");
-	}
+	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding.\n");
 
 	free(state);
 }
 
 int main() {
-	testWhoseTurn();
+	testPlaySmithy();
 	printf("\n >>>>> SUCCESS: Testing complete <<<<<\n\n");
 	return 0;
 }
