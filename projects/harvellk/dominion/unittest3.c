@@ -43,6 +43,7 @@ void assertTrue(int expression, char message[]) {
 void testPlayAdventurer() {
 	struct gameState state, testState;
 	int handPos = 0;
+	int i;
 	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse,
 			 sea_hag, tribute, smithy };
 
@@ -66,6 +67,44 @@ void testPlayAdventurer() {
 	);
 	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding.\n");
 
+	// TEST 2: player's hand has 2 additional treasures after playing Adventurer
+	printf("\n >>> TESTING - playAdventurer(gameState*) <<<\n");
+	printf(" playAdventurer increases hand TREASURE count by 2\n");
+	memcpy(&testState, &state, sizeof(struct gameState));
+	int currentPlayer = testState.whoseTurn;
+	//int deckCount = state->deckCount[currentPlayer];
+	int handCount = testState.handCount[currentPlayer];
+	int actualTreasureCount = 0;
+	int expectedTreasureCount;
+
+	for (i = 0; i < handCount; i++) {
+		if (testState.hand[currentPlayer][i] == copper ||
+			testState.hand[currentPlayer][i] == silver ||
+			testState.hand[currentPlayer][i] == gold)
+		{
+			actualTreasureCount++;
+		}
+	}
+
+	expectedTreasureCount = actualTreasureCount + 2;
+
+	playAdventurer(&testState, handPos);
+	actualTreasureCount = 0;
+	
+	for (i = 0; i < handCount; i++) {
+		if (testState.hand[currentPlayer][i] == copper ||
+			testState.hand[currentPlayer][i] == silver ||
+			testState.hand[currentPlayer][i] == gold)
+		{
+			actualTreasureCount++;
+		}
+	}
+
+	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
+		expectedTreasureCount,
+		actualTreasureCount
+	);
+	assertTrue(expectedTreasureCount == actualTreasureCount, "TEST FAILED: treasure count incorrect after playing adventurer.\n");
 }
 
 int main() {
