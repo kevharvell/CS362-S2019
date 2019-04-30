@@ -71,9 +71,9 @@ void testPlayAdventurer() {
 	printf("\n >>> TESTING - playAdventurer(gameState*) <<<\n");
 	printf(" playAdventurer increases hand TREASURE count by 2\n");
 	memcpy(&testState, &state, sizeof(struct gameState));
-	int currentPlayer = testState.whoseTurn;
+	currentPlayer = testState.whoseTurn;
 	//int deckCount = state->deckCount[currentPlayer];
-	int handCount = testState.handCount[currentPlayer];
+	handCount = testState.handCount[currentPlayer];
 	int actualTreasureCount = 0;
 	int expectedTreasureCount;
 
