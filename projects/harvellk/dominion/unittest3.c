@@ -57,7 +57,7 @@ void testPlayAdventurer() {
 	int handCount = testState.handCount[currentPlayer];
 	int expectedHandCount = handCount + 1;
 
-	playAdventurer(testState, handPos);
+	playAdventurer(&testState, handPos);
 	int actualHandCount = testState.handCount[currentPlayer];
 
 	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
