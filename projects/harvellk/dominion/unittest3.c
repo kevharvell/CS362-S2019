@@ -100,7 +100,7 @@ void testPlayAdventurer() {
 		}
 	}
 
-	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
+	printf("Expected number of treasures in hand: %d \tActual number of treasures in hand: %d\n",
 		expectedTreasureCount,
 		actualTreasureCount
 	);
