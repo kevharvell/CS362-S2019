@@ -87,6 +87,23 @@ void testPlaySmithy() {
 	);
 	assertTrue(expectedDeckCount == actualDeckCount, "TEST FAILED: deck count incorrect after drawing when deck count is 3.\n");
 
+	// TEST 4: player's deck count is >= 0 when decreased by 3 (when deck has < 3 cards)
+	printf("\n >>> TESTING - playSmithy(gameState*, int) <<<\n");
+	printf(" playSmithy - player's deck count is >= 0 when decreased by 3 (when deck has < 3 cards)\n");
+	handPos = 0;
+	state->whoseTurn = 0;
+	currentPlayer = state->whoseTurn;
+	state->deckCount[currentPlayer] = 1;
+	state->handCount[currentPlayer] = 5;
+
+	playSmithy(state, handPos);
+	actualDeckCount = state->deckCount[currentPlayer];
+
+	printf("Number of cards in deck: %d\n",
+		actualDeckCount
+	);
+	assertTrue(actualDeckCount >= 0, "TEST FAILED: deck count incorrect after drawing when deck count is < 3.\n");
+
 	free(state);
 }
 
