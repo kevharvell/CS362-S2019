@@ -66,7 +66,6 @@ void testPlayAdventurer() {
 	);
 	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding.\n");
 
-	free(state);
 }
 
 int main() {
