@@ -28,6 +28,7 @@ unittestresults: dominion.o
 	gcc -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest3 unittest3.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest4 unittest4.c -g dominion.o rngs.o $(CFLAGS)
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
