@@ -57,6 +57,8 @@ void testPlayCouncilRoom() {
 	int handCount = testState.handCount[currentPlayer];
 	int expectedHandCount = handCount + 3;
 
+	printf("Beginning hand count: %d", handCount);
+
 	playCouncilRoom(&testState, handPos);
 	int actualHandCount = testState.handCount[currentPlayer];
 
