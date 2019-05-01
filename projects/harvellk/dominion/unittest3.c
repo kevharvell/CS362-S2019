@@ -54,11 +54,10 @@ void testPlayAdventurer() {
 	printf(" playAdventurer increases hand count by 2 and discards the card\n");
 	memcpy(&testState, &state, sizeof(struct gameState));
 	int currentPlayer = testState.whoseTurn;
-	//int deckCount = state->deckCount[currentPlayer];
 	int handCount = testState.handCount[currentPlayer];
 	int expectedHandCount = handCount + 1;
 
-	playAdventurer(&testState, handPos);
+	playAdventurer(&testState);
 	int actualHandCount = testState.handCount[currentPlayer];
 
 	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
@@ -72,7 +71,6 @@ void testPlayAdventurer() {
 	printf(" playAdventurer increases hand TREASURE count by 2\n");
 	memcpy(&testState, &state, sizeof(struct gameState));
 	currentPlayer = testState.whoseTurn;
-	//int deckCount = state->deckCount[currentPlayer];
 	handCount = testState.handCount[currentPlayer];
 	int actualTreasureCount = 0;
 	int expectedTreasureCount;
@@ -88,7 +86,7 @@ void testPlayAdventurer() {
 
 	expectedTreasureCount = actualTreasureCount + 2;
 
-	playAdventurer(&testState, handPos);
+	playAdventurer(&testState);
 	actualTreasureCount = 0;
 	
 	for (i = 0; i < handCount; i++) {

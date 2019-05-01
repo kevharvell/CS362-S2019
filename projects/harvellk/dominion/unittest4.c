@@ -50,15 +50,14 @@ void testPlayCouncilRoom() {
 	initializeGame(2, k, 2, &state);
 
 	// TEST 1: player's hand increases by 2, then goes down 1 after discarding
-	printf("\n >>> TESTING - playAdventurer(gameState*) <<<\n");
-	printf(" playAdventurer increases hand count by 2 and discards the card\n");
+	printf("\n >>> TESTING - playCouncilRoom(gameState*, int) <<<\n");
+	printf(" playCouncilRoom increases hand count by 4 and discards the card\n");
 	memcpy(&testState, &state, sizeof(struct gameState));
 	int currentPlayer = testState.whoseTurn;
-	//int deckCount = state->deckCount[currentPlayer];
 	int handCount = testState.handCount[currentPlayer];
-	int expectedHandCount = handCount + 1;
+	int expectedHandCount = handCount + 3;
 
-	playAdventurer(&testState, handPos);
+	playCouncilRoom(&testState, handPos);
 	int actualHandCount = testState.handCount[currentPlayer];
 
 	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
