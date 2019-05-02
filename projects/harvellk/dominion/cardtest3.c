@@ -54,11 +54,11 @@ void testGreatHall() {
 	printf(" great_hall increases hand count by 1 and discards the card\n");
 	memcpy(&testState, &state, sizeof(struct gameState));
 	currentPlayer = testState.whoseTurn;
-	int actionCount = testState.numActions[currentPlayer];
+	int actionCount = testState.numActions;
 	int expectedActionCount = actionCount + 1;
 
 	cardEffect(great_hall, 0, 0, 0, &testState, 0, 0);
-	int actualActionCount = testState.handCount[currentPlayer];
+	int actualActionCount = testState.numActions;
 
 	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
 		expectedActionCount,
