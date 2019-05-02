@@ -33,14 +33,14 @@ unittestresults: dominion.o
 	gcc -o cardtest2 cardtest2.c -g dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
-	./unittest1 &> unittestresult.out
-	./unittest2 &> unittestresult.out
-	./unittest3 &> unittestresult.out
-	./unittest4 &> unittestresult.out
-	./cardtest1 &> unittestresult.out
-	./cardtest2 &> unittestresult.out
-	./cardtest3 &> unittestresult.out
-	./cardtest4 &> unittestresult.out
+	./unittest1 >> unittestresult.out
+	./unittest2 >> unittestresult.out
+	./unittest3 >> unittestresult.out
+	./unittest4 >> unittestresult.out
+	./cardtest1 >> unittestresult.out
+	./cardtest2 >> unittestresult.out
+	./cardtest3 >> unittestresult.out
+	./cardtest4 >> unittestresult.out
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 	
