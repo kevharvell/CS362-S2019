@@ -41,7 +41,7 @@ unittestresults: dominion.o
 	./cardtest2 >> unittestresult.out
 	./cardtest3 >> unittestresult.out
 	./cardtest4 >> unittestresult.out
-	gcov dominion.c -m >> unittestresult.out
+	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 	
 
