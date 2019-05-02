@@ -40,7 +40,7 @@ void testGreatHall() {
 	int handCount = testState.handCount[currentPlayer];
 	int expectedHandCount = handCount;
 
-	cardEffect(great_hall, 0, 0, 0, &testState, 0, 0)
+	cardEffect(great_hall, 0, 0, 0, &testState, 0, 0);
 	int actualHandCount = testState.handCount[currentPlayer];
 
 	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
