@@ -49,15 +49,13 @@ void testPlayCouncilRoom() {
 
 	initializeGame(2, k, 2, &state);
 
-	// TEST 1: player's hand increases by 2, then goes down 1 after discarding
+	// TEST 1: player's hand increases by 4, then goes down 1 after discarding
 	printf("\n >>> TESTING - playCouncilRoom(gameState*, int) <<<\n");
 	printf(" playCouncilRoom increases hand count by 4 and discards the card\n");
 	memcpy(&testState, &state, sizeof(struct gameState));
 	int currentPlayer = testState.whoseTurn;
 	int handCount = testState.handCount[currentPlayer];
 	int expectedHandCount = handCount + 3;
-
-	printf("Beginning hand count: %d", handCount);
 
 	playCouncilRoom(&testState, handPos);
 	int actualHandCount = testState.handCount[currentPlayer];
@@ -68,6 +66,22 @@ void testPlayCouncilRoom() {
 	);
 	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding.\n");
 
+	// TEST 2: other player's hand increases by 1
+	printf("\n >>> TESTING - playCouncilRoom(gameState*, int) <<<\n");
+	printf(" playCouncilRoom increases opponent's hand by 1\n");
+	memcpy(&testState, &state, sizeof(struct gameState));
+	int opponent = 1;
+	handCount = testState.handCount[opponent];
+	expectedHandCount = handCount + 1;
+
+	playCouncilRoom(&testState, handPos);
+	actualHandCount = testState.handCount[opponent];
+
+	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
+		expectedHandCount,
+		actualHandCount
+	);
+	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: opponent hand count incorrect after drawing.\n");
 }
 
 int main() {
