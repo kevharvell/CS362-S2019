@@ -32,7 +32,7 @@ unittestresults: dominion.o
 	gcc -o cardtest1 cardtest1.c -g dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest2 cardtest2.c -g dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
+	
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
