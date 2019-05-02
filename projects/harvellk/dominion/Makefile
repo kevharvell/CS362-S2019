@@ -25,14 +25,14 @@ interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
 unittestresults: dominion.o
-	gcc --coverage -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
-	gcc --coverage -o unittest3 unittest3.c -g dominion.o rngs.o $(CFLAGS)
-	gcc --coverage -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
-	gcc --coverage -o unittest4 unittest4.c -g dominion.o rngs.o $(CFLAGS)
-	gcc --coverage -o cardtest1 cardtest1.c -g dominion.o rngs.o $(CFLAGS)
-	gcc --coverage -o cardtest2 cardtest2.c -g dominion.o rngs.o $(CFLAGS)
-	gcc --coverage -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)
-	gcc --coverage -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest3 unittest3.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o unittest4 unittest4.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest1 cardtest1.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest2 cardtest2.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
 	./unittest1 >> unittestresult.out
 	./unittest2 >> unittestresult.out
 	./unittest3 >> unittestresult.out
