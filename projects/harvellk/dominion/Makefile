@@ -47,7 +47,7 @@ unittestresults: dominion.o
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
+	gcov dominion.c -fb >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
 
