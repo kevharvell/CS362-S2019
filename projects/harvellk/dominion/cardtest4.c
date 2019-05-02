@@ -58,7 +58,7 @@ void testSalvager() {
 	printf("\n >>> TESTING - cardEffect() for salvager <<<\n");
 	printf(" salvager increases coins by cost of trashed card\n");
 	memcpy(&testState, &state, sizeof(struct gameState));
-	int currentPlayer = testState.whoseTurn;
+	currentPlayer = testState.whoseTurn;
 	int coinCount = testState.coins;
 	int expectedCoinCount = coinCount + getCost(handCard(1, &testState));
 
