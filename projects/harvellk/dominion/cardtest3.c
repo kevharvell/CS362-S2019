@@ -33,8 +33,8 @@ void testGreatHall() {
 	initializeGame(2, k, 2, &state);
 
 	// TEST 1: player's hand increases by 1, then goes down 1 after discarding great hall
-	printf("\n >>> TESTING - playAdventurer(gameState*) <<<\n");
-	printf(" playAdventurer increases hand count by 1 and discards the card\n");
+	printf("\n >>> TESTING - cardEffect() for great_hall <<<\n");
+	printf(" great_hall increases hand count by 1 and discards the card\n");
 	memcpy(&testState, &state, sizeof(struct gameState));
 	int currentPlayer = testState.whoseTurn;
 	int handCount = testState.handCount[currentPlayer];
@@ -48,6 +48,23 @@ void testGreatHall() {
 		actualHandCount
 	);
 	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding.\n");
+
+	// TEST 2: player's number of actions increases by 1
+	printf("\n >>> TESTING - cardEffect() for great_hall <<<\n");
+	printf(" great_hall increases hand count by 1 and discards the card\n");
+	memcpy(&testState, &state, sizeof(struct gameState));
+	currentPlayer = testState.whoseTurn;
+	int actionCount = testState.numActions[currentPlayer];
+	int expectedActionCount = actionCount + 1;
+
+	cardEffect(great_hall, 0, 0, 0, &testState, 0, 0);
+	int actualActionCount = testState.handCount[currentPlayer];
+
+	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
+		expectedActionCount,
+		actualActionCount
+	);
+	assertTrue(expectedActionCount == actualActionCount, "TEST FAILED: action count incorrect.\n");
 
 }
 
