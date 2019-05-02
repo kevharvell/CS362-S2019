@@ -54,6 +54,23 @@ void testSalvager() {
 	);
 	assertTrue(expectedBuyCount == actualBuyCount, "TEST FAILED: buy count incorrect.\n");
 
+	// TEST 2: player gains coins equal to cost of trashed card.
+	printf("\n >>> TESTING - cardEffect() for salvager <<<\n");
+	printf(" salvager increases coins by cost of trashed card\n");
+	memcpy(&testState, &state, sizeof(struct gameState));
+	int currentPlayer = testState.whoseTurn;
+	int coinCount = testState.coins;
+	int expectedCoinCount = coinCount + getCost(handCard(1, &testState));
+
+	cardEffect(salvager, 1, 0, 0, &testState, 0, 0);
+	int actualCoinCount = testState.coins;
+
+	printf("Expected number of coins: %d \tActual number of coins: %d\n",
+		expectedCoinCount,
+		actualCoinCount
+	);
+	assertTrue(expectedCoinCount == actualCoinCount, "TEST FAILED: coin count incorrect.\n");
+
 
 }
 
