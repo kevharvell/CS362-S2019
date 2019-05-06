@@ -11,10 +11,10 @@ char inputChar()
 
 char *inputString()
 {
-	char s[6];
+	static char s[6];
 	int i;
 
-	for (i = 0; i < 6) {
+	for (i = 0; i < 6; i++) {
 		s[i] = inputChar();
 	}
     return s;
