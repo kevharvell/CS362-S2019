@@ -5,7 +5,7 @@
 
 char inputChar()
 {
-	char random = rand() % 127;
+	char random = rand() % 127 + 32;
     return random;
 }
 
@@ -14,7 +14,7 @@ char *inputString()
 	static char s[6];
 	int i;
 
-	for (i = 0; i < 6; i++) {
+	for (i = 0; i < 5; i++) {
 		s[i] = inputChar();
 	}
     return s;
