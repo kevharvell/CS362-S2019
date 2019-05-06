@@ -15,7 +15,7 @@ char *inputString()
 	int i;
 
 	for (i = 0; i < 5; i++) {
-		s[i] = inputChar();
+		s[i] = rand() % 26 + 97;
 	}
     return s;
 }
