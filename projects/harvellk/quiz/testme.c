@@ -5,7 +5,7 @@
 
 char inputChar()
 {
-	char random = rand() % 127 + 32;
+	char random = rand() % 95 + 32;
     return random;
 }
 
