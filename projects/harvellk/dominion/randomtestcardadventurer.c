@@ -33,51 +33,28 @@
 	return 0;
 }*/
 
-void assertTrue(int expression, char message[]) {
+int assertTrue(int expression, char message[]) {
 	if (!expression) {
 		printf(message);
+		return 0;
 	}
+	else return 1;
 }
 
-void testPlayAdventurer() {
-	struct gameState state, testState;
-	int handPos = 0;
-	int i;
-	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse,
-			 sea_hag, tribute, smithy };
+void checkPlayAdventurer(struct gameState *post, int *handCountFails,  int *treasureCountFails) 
+{
+	struct gameState pre;
+	memcpy(&pre, post, sizeof(struct gameState));
 
-	initializeGame(2, k, 2, &state);
-
-	// TEST 1: player's hand increases by 2, then goes down 1 after discarding
-	printf("\n >>> TESTING - playAdventurer(gameState*) <<<\n");
-	printf(" playAdventurer increases hand count by 2 and discards the card\n");
-	memcpy(&testState, &state, sizeof(struct gameState));
-	int currentPlayer = testState.whoseTurn;
-	int handCount = testState.handCount[currentPlayer];
-	int expectedHandCount = handCount + 1;
-
-	playAdventurer(&testState);
-	int actualHandCount = testState.handCount[currentPlayer];
-
-	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
-		expectedHandCount,
-		actualHandCount
-	);
-	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding.\n");
-
-	// TEST 2: player's hand has 2 additional treasures after playing Adventurer
-	printf("\n >>> TESTING - playAdventurer(gameState*) <<<\n");
-	printf(" playAdventurer increases hand TREASURE count by 2\n");
-	memcpy(&testState, &state, sizeof(struct gameState));
-	currentPlayer = testState.whoseTurn;
-	handCount = testState.handCount[currentPlayer];
+	int p = pre.whoseTurn;
+	int handCount = testState.handCount[p];
 	int actualTreasureCount = 0;
 	int expectedTreasureCount;
 
 	for (i = 0; i < handCount; i++) {
-		if (testState.hand[currentPlayer][i] == copper ||
-			testState.hand[currentPlayer][i] == silver ||
-			testState.hand[currentPlayer][i] == gold)
+		if (pre.hand[p][i] == copper ||
+			pre.hand[p][i] == silver ||
+			pre.hand[p][i] == gold)
 		{
 			actualTreasureCount++;
 		}
@@ -85,27 +62,49 @@ void testPlayAdventurer() {
 
 	expectedTreasureCount = actualTreasureCount + 2;
 
-	playAdventurer(&testState);
+	playAdventurer(post);
 	actualTreasureCount = 0;
 
 	for (i = 0; i < handCount; i++) {
-		if (testState.hand[currentPlayer][i] == copper ||
-			testState.hand[currentPlayer][i] == silver ||
-			testState.hand[currentPlayer][i] == gold)
+		if (post.hand[currentPlayer][i] == copper ||
+			post.hand[currentPlayer][i] == silver ||
+			post.hand[currentPlayer][i] == gold)
 		{
 			actualTreasureCount++;
 		}
 	}
 
-	printf("Expected number of treasures in hand: %d \tActual number of treasures in hand: %d\n",
-		expectedTreasureCount,
-		actualTreasureCount
-	);
-	assertTrue(expectedTreasureCount == actualTreasureCount, "TEST FAILED: treasure count incorrect after playing adventurer.\n");
+	if (!assertTrue(post->handCount[p] == pre.handCount[p] + 1, ">>> TEST FAILED: Incorrect # of cards drawn\n")) (*handCountFails)++;
+	if (!assertTrue(expectedTreasureCount == actualTreasureCount, ">>> TEST FAILED: treasure count incorrect after playing adventurer.\n")) (*treasureCountFails)++;
 }
 
 int main() {
-	testPlayAdventurer();
+	srand(time(0));
+	int n, handPos;
+	int handCountFails = 0;
+	int treasureCountFails = 0;
+	int k[10] = { adventurer, council_room, feast, gardens, mine,
+				  remodel, smithy, village, baron, great_hall };
+	int numPlayers = 2;
+
+	struct gameState G;
+
+	printf("Testing playAdventurer\n");
+	printf("RANDOM TESTS\n");
+
+	for (n = 0; n < 2000; n++) {
+		initializeGame(numPlayers, k, 12, &G);
+		G.whoseTurn = rand() % 2;
+		int p = G.whoseTurn;
+		G.deckCount[p] = rand() % MAX_DECK;
+		G.discardCount[p] = rand() % MAX_DECK;
+		G.handCount[p] = rand() % MAX_HAND + 1;
+		handPos = rand() % G.handCount[p];
+		checkPlayAdventurer(&G, &handCountFails, &treasureCountFails);
+	}
+
 	printf("\n >>>>> SUCCESS: Testing complete <<<<<\n\n");
+	printf("# of Hand Count Fails: %d\n", handCountFails);
+	printf("# of Treasure Count Fails: %d\n", treasureCountFails);
 	return 0;
 }
