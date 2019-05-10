@@ -47,6 +47,8 @@ unittestresults: dominion.o
 randomtestresults: dominion.o
 	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
 	./randomtestcard1
+	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
+	./randomtestcard2
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
