@@ -47,7 +47,7 @@ void checkPlayAdventurer(struct gameState *post, int *handCountFails,  int *trea
 	memcpy(&pre, post, sizeof(struct gameState));
 
 	int p = pre.whoseTurn;
-	int handCount = testState.handCount[p];
+	int handCount = pre.handCount[p];
 	int actualTreasureCount = 0;
 	int expectedTreasureCount;
 
@@ -66,9 +66,9 @@ void checkPlayAdventurer(struct gameState *post, int *handCountFails,  int *trea
 	actualTreasureCount = 0;
 
 	for (i = 0; i < handCount; i++) {
-		if (post->hand[currentPlayer][i] == copper ||
-			post->hand[currentPlayer][i] == silver ||
-			post->hand[currentPlayer][i] == gold)
+		if (post->hand[p][i] == copper ||
+			post->hand[p][i] == silver ||
+			post->hand[p][i] == gold)
 		{
 			actualTreasureCount++;
 		}
