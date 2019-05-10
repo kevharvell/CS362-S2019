@@ -36,7 +36,7 @@ void checkPlaySmithy(int handPos, struct gameState *post) {
 	int deckCountFails = 0; 
 	int discardCountFails = 0;
 	int p = pre.whoseTurn;
-	int r = playSmithy(post, handPos);
+	playSmithy(post, handPos);
 
 	if (!assertTrue(post->handCount[p] == pre.handCount[p] + 2, ">>> TEST FAILED: Incorrect # of cards drawn\n")) handCountFails++;
 	if (!assertTrue(post->deckCount[p] == pre.deckCount[p] - 3, ">>> TEST FAILED: Incorrect # of cards removed from deck\n")) deckCountFails++;
