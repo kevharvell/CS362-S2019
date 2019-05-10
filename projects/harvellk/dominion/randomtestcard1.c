@@ -66,7 +66,7 @@ int main() {
 	PutSeed(3);
 
 	for (n = 0; n < 10; n++) {
-		initializeGame(numPlayers, k, 0, &G);
+		initializeGame(numPlayers, k, 12, &G);
 		G.whoseTurn = rand() % MAX_PLAYERS;
 		int p = G.whoseTurn;
 		G.deckCount[p] = rand() % MAX_DECK;
