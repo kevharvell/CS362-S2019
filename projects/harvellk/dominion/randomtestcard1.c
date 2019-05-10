@@ -19,18 +19,36 @@
 	return 0;
 }*/
 
-void assertTrue(int expression, char message[]) {
+int assertTrue(int expression, char message[]) {
 	if (!expression) {
 		printf(message);
+		return 0;
 	}
+	else return 1;
 }
 
-void checkPlaySmithy() {
-	
+void checkPlaySmithy(int handPos, struct gameState *post) {
+	struct gameState pre;
+	memcpy(&pre, post, sizeof(struct gameState));
+
+	int handCountFails = 0;
+	int deckCountFails = 0; 
+	int discardCountFails = 0;
+	int p = pre.whoseTurn;
+	int r = playSmithy(post, handPos);
+
+	if (!assertTrue(post->handCount[p] == pre->handCount + 2, ">>> TEST FAILED: Incorrect # of cards drawn\n")) handCountFails++;
+	if (!assertTrue(post->deckCount[p] == pre->deckCount - 3, ">>> TEST FAILED: Incorrect # of cards removed from deck\n")) deckCountFails++;
+	if (!assertTrue(post->discardCount[p] == pre->discardCount + 1, ">>> TEST FAILED: Smithy not discarded after use\n")) discardCountFails++;
+
+	printf("# of Hand Count Fails: %d\n", handCountFails);
+	printf("# of Deck Count Fails: %d\n", deckCountFails);
+	printf("# of Smithy Discard Fails: %d\n", discardCountFails);
+
 }
 
 int main() {
-	int i, n, r, p, deckCount, discardCount, handCount;
+	int i, n, r, handPos, deckCount, discardCount, handCount;
 
 	int k[10] = { adventurer, council_room, feast, gardens, mine,
 				  remodel, smithy, village, baron, great_hall };
@@ -40,10 +58,21 @@ int main() {
 	printf("Testing playSmithy\n");
 	printf("RANDOM TESTS\n");
 
-	SeleceStream(2);
-	Put
+	SelectStream(2);
+	PutSeed(3);
 
-	checkPlaySmithy();
+	for (n = 0; n < 2000; n++) {
+		for (i = 0; i < sizeof(struct gameState); i++) {
+			((char*)&G)[i] = floor(Random() * 256);
+		}
+		handPos = floor(Random() * 5);
+		G.whoseTurn = floor(Random() * MAX_PLAYERS);
+		G.deckCount[p] = floor(Random() * MAX_DECK);
+		G.discardCount[p] = floor(Random() * MAX_DECK);
+		G.handCount[p] = floor(Random() * MAX_HAND);
+		checkPlaySmithy(handPos, &G);
+	}
+
 	printf("\n >>>>> SUCCESS: Testing complete <<<<<\n\n");
 	return 0;
 }
