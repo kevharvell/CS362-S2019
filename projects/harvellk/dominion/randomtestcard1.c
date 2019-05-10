@@ -51,7 +51,7 @@ int main() {
 	int discardCountFails = 0;
 	int k[10] = { adventurer, council_room, feast, gardens, mine,
 				  remodel, smithy, village, baron, great_hall };
-	int numPlayers = rand() % MAX_PLAYERS;
+	int numPlayers = 2;
 
 	struct gameState G;
 
