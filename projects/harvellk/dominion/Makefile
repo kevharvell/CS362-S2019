@@ -46,9 +46,7 @@ unittestresults: dominion.o
 	
 randomtestresults: dominion.o
 	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
-	./randomtestcard1 >> randomtestresults.out
-	gcov dominion.c -fb >> ranodomtestresults.out
-	cat dominion.c.gcov >> randomtestresults.out
+	./randomtestcard1
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
