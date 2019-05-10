@@ -55,6 +55,8 @@ int main() {
 	int k[10] = { adventurer, council_room, feast, gardens, mine,
 				  remodel, smithy, village, baron, great_hall };
 
+	int numPlayers = rand() % (MAX_PLAYERS + 1);
+
 	struct gameState G;
 
 	printf("Testing playSmithy\n");
@@ -64,9 +66,7 @@ int main() {
 	PutSeed(3);
 
 	for (n = 0; n < 10; n++) {
-		for (i = 0; i < sizeof(struct gameState); i++) {
-			((char*)&G)[i] = rand() % 257;
-		}
+		initializeGame(numPlayers, k, time(0), &G);
 		G.whoseTurn = rand() % (MAX_PLAYERS + 1);
 		int p = G.whoseTurn;
 		G.deckCount[p] = rand() % (MAX_DECK + 1);
