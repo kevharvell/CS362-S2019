@@ -48,7 +48,7 @@ void checkPlaySmithy(int handPos, struct gameState *post) {
 }
 
 int main() {
-	int i, n, r, handPos, deckCount, discardCount, handCount;
+	int i, n, handPos, deckCount, discardCount, handCount;
 
 	int k[10] = { adventurer, council_room, feast, gardens, mine,
 				  remodel, smithy, village, baron, great_hall };
@@ -65,11 +65,12 @@ int main() {
 		for (i = 0; i < sizeof(struct gameState); i++) {
 			((char*)&G)[i] = floor(Random() * 256);
 		}
-		handPos = floor(Random() * 5);
 		G.whoseTurn = floor(Random() * MAX_PLAYERS);
+		int p = G.whoseTurn;
 		G.deckCount[p] = floor(Random() * MAX_DECK);
 		G.discardCount[p] = floor(Random() * MAX_DECK);
 		G.handCount[p] = floor(Random() * MAX_HAND);
+		handPos = floor(Random() * G.handCount[p]);
 		checkPlaySmithy(handPos, &G);
 	}
 
