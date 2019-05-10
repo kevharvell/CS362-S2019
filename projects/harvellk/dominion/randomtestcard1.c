@@ -61,7 +61,7 @@ int main() {
 	SelectStream(2);
 	PutSeed(3);
 
-	for (n = 0; n < 10; n++) {
+	for (n = 0; n < 2000; n++) {
 		initializeGame(numPlayers, k, 12, &G);
 		G.whoseTurn = rand() % MAX_PLAYERS;
 		int p = G.whoseTurn;
