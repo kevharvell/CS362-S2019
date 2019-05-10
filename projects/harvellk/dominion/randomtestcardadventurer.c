@@ -46,6 +46,7 @@ void checkPlayAdventurer(struct gameState *post, int *handCountFails,  int *trea
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));
 
+	int i;
 	int p = pre.whoseTurn;
 	int handCount = pre.handCount[p];
 	int actualTreasureCount = 0;
@@ -99,7 +100,6 @@ int main() {
 		G.deckCount[p] = rand() % MAX_DECK;
 		G.discardCount[p] = rand() % MAX_DECK;
 		G.handCount[p] = rand() % MAX_HAND + 1;
-		handPos = rand() % G.handCount[p];
 		checkPlayAdventurer(&G, &handCountFails, &treasureCountFails);
 	}
 
