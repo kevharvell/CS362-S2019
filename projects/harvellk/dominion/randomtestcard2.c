@@ -17,10 +17,12 @@
 	return 0;
 }*/
 
-void assertTrue(int expression, char message[]) {
+int assertTrue(int expression, char message[]) {
 	if (!expression) {
 		printf(message);
+		return 0;
 	}
+	else return 1;
 }
 
 void checkPlayVillage(int handPos, struct gameState *post, int *handCountFails, int *deckCountFails, int *discardCountFails, int *actionCountFails) {
