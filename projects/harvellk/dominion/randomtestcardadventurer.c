@@ -66,9 +66,9 @@ void checkPlayAdventurer(struct gameState *post, int *handCountFails,  int *trea
 	actualTreasureCount = 0;
 
 	for (i = 0; i < handCount; i++) {
-		if (post.hand[currentPlayer][i] == copper ||
-			post.hand[currentPlayer][i] == silver ||
-			post.hand[currentPlayer][i] == gold)
+		if (post->hand[currentPlayer][i] == copper ||
+			post->hand[currentPlayer][i] == silver ||
+			post->hand[currentPlayer][i] == gold)
 		{
 			actualTreasureCount++;
 		}
@@ -80,7 +80,7 @@ void checkPlayAdventurer(struct gameState *post, int *handCountFails,  int *trea
 
 int main() {
 	srand(time(0));
-	int n, handPos;
+	int n;
 	int handCountFails = 0;
 	int treasureCountFails = 0;
 	int k[10] = { adventurer, council_room, feast, gardens, mine,
