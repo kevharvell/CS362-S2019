@@ -39,8 +39,6 @@ void checkPlaySmithy(int handPos, struct gameState *post, int *handCountFails, i
 	if (!assertTrue(post->deckCount[p] == pre.deckCount[p] - 3, ">>> TEST FAILED: Incorrect # of cards removed from deck\n")) (*deckCountFails)++;
 	if (!assertTrue(post->playedCardCount == pre.playedCardCount + 1, ">>> TEST FAILED: Smithy not discarded after use\n")) (*discardCountFails)++;
 
-	
-
 }
 
 int main() {
@@ -57,9 +55,6 @@ int main() {
 
 	printf("Testing playSmithy\n");
 	printf("RANDOM TESTS\n");
-
-	SelectStream(2);
-	PutSeed(3);
 
 	for (n = 0; n < 2000; n++) {
 		initializeGame(numPlayers, k, 12, &G);

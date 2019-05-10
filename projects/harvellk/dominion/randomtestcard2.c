@@ -23,107 +23,50 @@ void assertTrue(int expression, char message[]) {
 	}
 }
 
-void testPlayVillage() {
-	struct gameState *state = malloc(sizeof(struct gameState));
+void checkPlayVillage(int handPos, struct gameState *post, int *handCountFails, int *deckCountFails, int *discardCountFails, int *actionCountFails) {
+	struct gameState pre;
+	memcpy(&pre, post, sizeof(struct gameState));
 
-	// TEST 1: player's hand increases by 1, then goes down 1 after discarding
-	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
-	printf(" playVillage increases hand count by 1 and discards the card\n");
-	int handPos = 0;
-	state->whoseTurn = 0;
-	int currentPlayer = state->whoseTurn;
-	state->deckCount[currentPlayer] = 10;
-	state->handCount[currentPlayer] = 5;
-	int expectedHandCount = 5;
+	int p = pre.whoseTurn;
+	playVillage(post, handPos);
 
-	playVillage(state, handPos);
-	int actualHandCount = state->handCount[currentPlayer];
-
-	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
-		expectedHandCount,
-		actualHandCount
-	);
-	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding.\n");
-
-	// TEST 2: player gains 2 actions
-	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
-	printf(" playVillage increases actions by 2\n");
-	handPos = 0;
-	state->whoseTurn = 0;
-	state->numActions = 1;
-
-	int expectedActionCount = 3;
-
-	playVillage(state, handPos);
-	int actualActionCount = state->numActions;
-
-	printf("Expected number of actions: %d \tActual number actions: %d\n",
-		expectedActionCount,
-		actualActionCount
-	);
-	assertTrue(expectedActionCount == actualActionCount, "TEST FAILED: action count incorrect.\n");
-
-	// TEST 3: player's deck count goes down by 1 after playing Village
-	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
-	printf(" playVillage decreases deck count by 1\n");
-	handPos = 0;
-	state->whoseTurn = 0;
-	currentPlayer = state->whoseTurn;
-	state->handCount[currentPlayer] = 5;
-	state->deckCount[currentPlayer] = 10;
-	int expectedDeckCount = 9;
-
-	playVillage(state, handPos);
-	int actualDeckCount = state->deckCount[currentPlayer];
-
-	printf("Expected number of cards in deck: %d \tActual number of cards in deck: %d\n",
-		expectedDeckCount,
-		actualDeckCount
-	);
-	assertTrue(expectedDeckCount == actualDeckCount, "TEST FAILED: deck count incorrect after drawing.\n");
-
-	// TEST 4: player's hand increases by 1, then goes down 1 after discarding when deck count is 0
-	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
-	printf(" playVillage increases hand count by 1 and discards the card when deck count is 0\n");
-	handPos = 0;
-	state->whoseTurn = 0;
-	currentPlayer = state->whoseTurn;
-	state->deckCount[currentPlayer] = 0;
-	state->handCount[currentPlayer] = 5;
-	expectedHandCount = 5;
-
-	playVillage(state, handPos);
-	actualHandCount = state->handCount[currentPlayer];
-
-	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
-		expectedHandCount,
-		actualHandCount
-	);
-	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding when deck count is 0.\n");
-
-	// TEST 5: player's hand increases by 1, then goes down 1 after discarding when deck count is 1
-	printf("\n >>> TESTING - playVillage(gameState*, int) <<<\n");
-	printf(" playVillage increases hand count by 1 and discards the card when deck count is 1\n");
-	handPos = 0;
-	state->whoseTurn = 0;
-	currentPlayer = state->whoseTurn;
-	state->deckCount[currentPlayer] = 1;
-	state->handCount[currentPlayer] = 5;
-	expectedHandCount = 5;
-
-	playVillage(state, handPos);
-	actualHandCount = state->handCount[currentPlayer];
-
-	printf("Expected number of cards in hand: %d \tActual number of cards in hand: %d\n",
-		expectedHandCount,
-		actualHandCount
-	);
-	assertTrue(expectedHandCount == actualHandCount, "TEST FAILED: hand count incorrect after drawing/discarding when deck count is 1.\n");
-	free(state);
+	if (!assertTrue(post->handCount[p] == pre.handCount[p], ">>> TEST FAILED: Incorrect # of cards drawn\n")) (*handCountFails)++;
+	if (!assertTrue(post->deckCount[p] == pre.deckCount[p] - 1, ">>> TEST FAILED: Incorrect # of cards removed from deck\n")) (*deckCountFails)++;
+	if (!assertTrue(post->playedCardCount == pre.playedCardCount + 1, ">>> TEST FAILED: Village not discarded after use\n")) (*discardCountFails)++;
+	if (!assertTrue(post->numActions == pre.numActions + 2, ">>> TEST FAILED: Incorrect # of actions added\n")) (*actionCountFails)++;
 }
 
 int main() {
-	testPlayVillage();
+	srand(time(0));
+	int n, handPos;
+	int handCountFails = 0;
+	int deckCountFails = 0;
+	int discardCountFails = 0;
+	int actionCountFails = 0;
+	int k[10] = { adventurer, council_room, feast, gardens, mine,
+				  remodel, smithy, village, baron, great_hall };
+	int numPlayers = 2;
+
+	struct gameState G;
+
+	printf("Testing playVillage\n");
+	printf("RANDOM TESTS\n");
+
+	for (n = 0; n < 2000; n++) {
+		initializeGame(numPlayers, k, 12, &G);
+		G.whoseTurn = rand() % 2;
+		int p = G.whoseTurn;
+		G.deckCount[p] = rand() % MAX_DECK;
+		G.discardCount[p] = rand() % MAX_DECK;
+		G.handCount[p] = rand() % MAX_HAND + 1;
+		handPos = rand() % G.handCount[p];
+		checkPlayVillage(handPos, &G, &handCountFails, &deckCountFails, &discardCountFails, &actionCountFails);
+	}
+
 	printf("\n >>>>> SUCCESS: Testing complete <<<<<\n\n");
+	printf("# of Hand Count Fails: %d\n", handCountFails);
+	printf("# of Deck Count Fails: %d\n", deckCountFails);
+	printf("# of Village Discard Fails: %d\n", discardCountFails);
+	printf("# of Action Count Fails: %d\n", actionCountFails);
 	return 0;
 }
