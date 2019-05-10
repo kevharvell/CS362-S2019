@@ -63,7 +63,7 @@ int main() {
 
 	for (n = 0; n < 2000; n++) {
 		initializeGame(numPlayers, k, 12, &G);
-		G.whoseTurn = rand() % MAX_PLAYERS;
+		G.whoseTurn = rand() % 2;
 		int p = G.whoseTurn;
 		G.deckCount[p] = rand() % MAX_DECK;
 		G.discardCount[p] = rand() % MAX_DECK;
