@@ -5,6 +5,7 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
+#include <time.h>
 
 /*int playSmithy(struct gameState *state, int handPos) {
 	int i;
@@ -48,6 +49,7 @@ void checkPlaySmithy(int handPos, struct gameState *post) {
 }
 
 int main() {
+	srand(time(0));
 	int i, n, handPos;
 
 	int k[10] = { adventurer, council_room, feast, gardens, mine,
@@ -65,12 +67,12 @@ int main() {
 		for (i = 0; i < sizeof(struct gameState); i++) {
 			((char*)&G)[i] = floor(Random() * 256);
 		}
-		G.whoseTurn = floor(Random() * MAX_PLAYERS);
+		G.whoseTurn = rand() % (MAX_PLAYERS + 1);
 		int p = G.whoseTurn;
-		G.deckCount[p] = floor(Random() * MAX_DECK);
-		G.discardCount[p] = floor(Random() * MAX_DECK);
-		G.handCount[p] = floor(Random() * MAX_HAND);
-		handPos = floor(Random() * G.handCount[p]);
+		G.deckCount[p] = rand() % (MAX_DECK + 1);
+		G.discardCount[p] = rand() % (MAX_DECK + 1);
+		G.handCount[p] = rand() % (MAX_HAND + 1);
+		handPos = rand() % (G.handCount[p] + 1);
 		checkPlaySmithy(handPos, &G);
 	}
 
