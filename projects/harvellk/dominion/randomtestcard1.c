@@ -50,7 +50,7 @@ void checkPlaySmithy(int handPos, struct gameState *post) {
 
 int main() {
 	srand(time(0));
-	int i, n, handPos;
+	int n, handPos;
 
 	int k[10] = { adventurer, council_room, feast, gardens, mine,
 				  remodel, smithy, village, baron, great_hall };
@@ -67,12 +67,12 @@ int main() {
 
 	for (n = 0; n < 10; n++) {
 		initializeGame(numPlayers, k, time(0), &G);
-		G.whoseTurn = rand() % (MAX_PLAYERS + 1);
+		G.whoseTurn = rand() % MAX_PLAYERS;
 		int p = G.whoseTurn;
-		G.deckCount[p] = rand() % (MAX_DECK + 1);
-		G.discardCount[p] = rand() % (MAX_DECK + 1);
-		G.handCount[p] = rand() % (MAX_HAND + 1);
-		handPos = rand() % (G.handCount[p] + 1);
+		G.deckCount[p] = rand() % MAX_DECK;
+		G.discardCount[p] = rand() % MAX_DECK;
+		G.handCount[p] = rand() % MAX_HAND;
+		handPos = rand() % G.handCount[p];
 		checkPlaySmithy(handPos, &G);
 	}
 
