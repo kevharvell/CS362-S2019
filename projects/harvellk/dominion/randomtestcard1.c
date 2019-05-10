@@ -65,7 +65,7 @@ int main() {
 
 	for (n = 0; n < 10; n++) {
 		for (i = 0; i < sizeof(struct gameState); i++) {
-			((char*)&G)[i] = floor(Random() * 256);
+			((char*)&G)[i] = rand() % 257;
 		}
 		G.whoseTurn = rand() % (MAX_PLAYERS + 1);
 		int p = G.whoseTurn;
