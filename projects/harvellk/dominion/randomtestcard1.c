@@ -37,9 +37,9 @@ void checkPlaySmithy(int handPos, struct gameState *post) {
 	int p = pre.whoseTurn;
 	int r = playSmithy(post, handPos);
 
-	if (!assertTrue(post->handCount[p] == pre->handCount + 2, ">>> TEST FAILED: Incorrect # of cards drawn\n")) handCountFails++;
-	if (!assertTrue(post->deckCount[p] == pre->deckCount - 3, ">>> TEST FAILED: Incorrect # of cards removed from deck\n")) deckCountFails++;
-	if (!assertTrue(post->discardCount[p] == pre->discardCount + 1, ">>> TEST FAILED: Smithy not discarded after use\n")) discardCountFails++;
+	if (!assertTrue(post->handCount[p] == pre.handCount + 2, ">>> TEST FAILED: Incorrect # of cards drawn\n")) handCountFails++;
+	if (!assertTrue(post->deckCount[p] == pre.deckCount - 3, ">>> TEST FAILED: Incorrect # of cards removed from deck\n")) deckCountFails++;
+	if (!assertTrue(post->discardCount[p] == pre.discardCount + 1, ">>> TEST FAILED: Smithy not discarded after use\n")) discardCountFails++;
 
 	printf("# of Hand Count Fails: %d\n", handCountFails);
 	printf("# of Deck Count Fails: %d\n", deckCountFails);
