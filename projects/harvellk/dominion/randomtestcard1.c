@@ -67,7 +67,7 @@ int main() {
 		int p = G.whoseTurn;
 		G.deckCount[p] = rand() % MAX_DECK;
 		G.discardCount[p] = rand() % MAX_DECK;
-		G.handCount[p] = rand() % MAX_HAND;
+		G.handCount[p] = rand() % MAX_HAND + 1;
 		handPos = rand() % G.handCount[p];
 		checkPlaySmithy(handPos, &G, &handCountFails, &deckCountFails, &discardCountFails);
 	}
