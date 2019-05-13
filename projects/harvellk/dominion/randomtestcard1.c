@@ -28,17 +28,27 @@ int assertTrue(int expression, char message[]) {
 	else return 1;
 }
 
-void checkPlaySmithy(int handPos, struct gameState *post, int *handCountFails, int *deckCountFails, int *discardCountFails) {
+void checkPlaySmithy(int handPos, 
+					 struct gameState *post, 
+					 int *handCountFails,	
+					 int *deckCountFails, 
+					 int *discardCountFails) 
+{
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));
 
 	int p = pre.whoseTurn;
 	playSmithy(post, handPos);
 
-	if (!assertTrue(post->handCount[p] == pre.handCount[p] + 2, ">>> TEST FAILED: Incorrect # of cards drawn\n")) (*handCountFails)++;
-	if (!assertTrue(post->deckCount[p] == pre.deckCount[p] - 3, ">>> TEST FAILED: Incorrect # of cards removed from deck\n")) (*deckCountFails)++;
-	if (!assertTrue(post->playedCardCount == pre.playedCardCount + 1, ">>> TEST FAILED: Smithy not discarded after use\n")) (*discardCountFails)++;
-
+	if (!assertTrue(post->handCount[p] == pre.handCount[p] + 2, 
+					">>> TEST FAILED: Incorrect # of cards drawn\n")) 
+		(*handCountFails)++;
+	if (!assertTrue(post->deckCount[p] == pre.deckCount[p] - 3, 
+					">>> TEST FAILED: Incorrect # of cards removed from deck\n")) 
+		(*deckCountFails)++;
+	if (!assertTrue(post->playedCardCount == pre.playedCardCount + 1, 
+					">>> TEST FAILED: Smithy not discarded after use\n")) 
+		(*discardCountFails)++;
 }
 
 int main() {

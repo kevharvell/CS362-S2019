@@ -75,8 +75,12 @@ void checkPlayAdventurer(struct gameState *post, int *handCountFails,  int *trea
 		}
 	}
 
-	if (!assertTrue(post->handCount[p] == pre.handCount[p] + 1, ">>> TEST FAILED: Incorrect # of cards drawn\n")) (*handCountFails)++;
-	if (!assertTrue(expectedTreasureCount == actualTreasureCount, ">>> TEST FAILED: treasure count incorrect after playing adventurer.\n")) (*treasureCountFails)++;
+	if (!assertTrue(post->handCount[p] == pre.handCount[p] + 1, 
+					">>> TEST FAILED: Incorrect # of cards drawn\n")) 
+		(*handCountFails)++;
+	if (!assertTrue(expectedTreasureCount == actualTreasureCount, 
+					">>> TEST FAILED: treasure count incorrect after playing adventurer.\n")) 
+		(*treasureCountFails)++;
 }
 
 int main() {

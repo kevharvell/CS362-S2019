@@ -25,17 +25,31 @@ int assertTrue(int expression, char message[]) {
 	else return 1;
 }
 
-void checkPlayVillage(int handPos, struct gameState *post, int *handCountFails, int *deckCountFails, int *discardCountFails, int *actionCountFails) {
+void checkPlayVillage(int handPos, 
+					  struct gameState *post, 
+					  int *handCountFails, 
+					  int *deckCountFails, 
+					  int *discardCountFails, 
+					  int *actionCountFails) 
+{
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));
 
 	int p = pre.whoseTurn;
 	playVillage(post, handPos);
 
-	if (!assertTrue(post->handCount[p] == pre.handCount[p], ">>> TEST FAILED: Incorrect # of cards drawn\n")) (*handCountFails)++;
-	if (!assertTrue(post->deckCount[p] == pre.deckCount[p] - 1, ">>> TEST FAILED: Incorrect # of cards removed from deck\n")) (*deckCountFails)++;
-	if (!assertTrue(post->playedCardCount == pre.playedCardCount + 1, ">>> TEST FAILED: Village not discarded after use\n")) (*discardCountFails)++;
-	if (!assertTrue(post->numActions == pre.numActions + 2, ">>> TEST FAILED: Incorrect # of actions added\n")) (*actionCountFails)++;
+	if (!assertTrue(post->handCount[p] == pre.handCount[p], 
+					">>> TEST FAILED: Incorrect # of cards drawn\n")) 
+		(*handCountFails)++;
+	if (!assertTrue(post->deckCount[p] == pre.deckCount[p] - 1, 
+					">>> TEST FAILED: Incorrect # of cards removed from deck\n")) 
+		(*deckCountFails)++;
+	if (!assertTrue(post->playedCardCount == pre.playedCardCount + 1, 
+					">>> TEST FAILED: Village not discarded after use\n")) 
+		(*discardCountFails)++;
+	if (!assertTrue(post->numActions == pre.numActions + 2, 
+					">>> TEST FAILED: Incorrect # of actions added\n")) 
+		(*actionCountFails)++;
 }
 
 int main() {
