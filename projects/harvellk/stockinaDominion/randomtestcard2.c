@@ -36,7 +36,7 @@ void checkPlayVillage(int handPos,
 	memcpy(&pre, post, sizeof(struct gameState));
 
 	int p = pre.whoseTurn;
-	playVillage(post, handPos);
+	cardEffect(village, 0, 0, 0, post, handPos, 0);
 
 	if (!assertTrue(post->handCount[p] == pre.handCount[p], 
 					">>> TEST FAILED: Incorrect # of cards drawn\n")) 

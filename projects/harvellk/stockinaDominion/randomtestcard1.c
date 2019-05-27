@@ -7,19 +7,6 @@
 #include "rngs.h"
 #include <time.h>
 
-/*int playSmithy(struct gameState *state, int handPos) {
-	int i;
-	int currentPlayer = whoseTurn(state);
-	//+3 Cards
-	for (i = 0; i < 5; i++)
-	{
-		drawCard(currentPlayer, state);
-	}
-	//discard card from hand
-	discardCard(handPos, currentPlayer, state, 0);
-	return 0;
-}*/
-
 int assertTrue(int expression, char message[]) {
 	if (!expression) {
 		printf(message);
@@ -38,7 +25,7 @@ void checkPlaySmithy(int handPos,
 	memcpy(&pre, post, sizeof(struct gameState));
 
 	int p = pre.whoseTurn;
-	playSmithy(post, handPos);
+	playSmithy(p, post, handPos);
 
 	if (!assertTrue(post->handCount[p] == pre.handCount[p] + 2, 
 					">>> TEST FAILED: Incorrect # of cards drawn\n")) 
