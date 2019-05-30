@@ -78,6 +78,7 @@ void testPlayVillage() {
 	handPos = 0;
 	state->whoseTurn = 0;
 	currentPlayer = state->whoseTurn;
+	state->discardCount[currentPlayer] = 5;
 	state->deckCount[currentPlayer] = 0;
 	state->handCount[currentPlayer] = 5;
 	expectedHandCount = 5;
